@@ -52,10 +52,12 @@ class Race extends React.Component {
     }
 
     correctInput = (newestChar) => {
-        this.setState({
-            correctText: this.state.correctText + newestChar,
-            todoText: this.state.todoText.substr(1, this.state.todoText.length)
-        });
+        if (this.state.todoText.length && !this.state.wrongText.length) {
+            this.setState({
+                correctText: this.state.correctText + newestChar,
+                todoText: this.state.todoText.substr(1, this.state.todoText.length)
+            });
+        }
     }
 
     incorrectInput = () => {

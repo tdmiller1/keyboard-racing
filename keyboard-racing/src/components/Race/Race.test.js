@@ -60,3 +60,53 @@ describe('Race component backspace function', () => {
     expect(wrapper.state('todoText')).toEqual('ext!');
   });
 });
+
+describe('Race component correctInput function', () => {
+  it('should do nothing if todoText is empty and wrongText is empty', () => {
+    const wrapper = shallow(<Race />);
+    const instance = wrapper.instance();
+
+    wrapper.setState({ wrongText: '', correctText: 'Text!', todoText: '' });
+    instance.correctInput('A');
+
+    expect(wrapper.state('wrongText')).toEqual('');
+    expect(wrapper.state('correctText')).toEqual('Text!');
+    expect(wrapper.state('todoText')).toEqual('');
+  });
+
+  it('should append to correctText if todoText is not empty', () => {
+    const wrapper = shallow(<Race />);
+    const instance = wrapper.instance();
+
+    wrapper.setState({ wrongText: '', correctText: 'T', todoText: 'ext!' });
+    instance.correctInput('e');
+
+    expect(wrapper.state('wrongText')).toEqual('');
+    expect(wrapper.state('correctText')).toEqual('Te');
+    expect(wrapper.state('todoText')).toEqual('xt!');
+  });
+
+  it('should do nothing if wrongText is not empty', () => {
+    const wrapper = shallow(<Race />);
+    const instance = wrapper.instance();
+
+    wrapper.setState({ wrongText: 'ex', correctText: 'T', todoText: 't!' });
+    instance.correctInput('t');
+
+    expect(wrapper.state('wrongText')).toEqual('ex');
+    expect(wrapper.state('correctText')).toEqual('T');
+    expect(wrapper.state('todoText')).toEqual('t!');
+  });
+
+  it('should append to correctText if todoText is not empty and correctText is empty ', () => {
+    const wrapper = shallow(<Race />);
+    const instance = wrapper.instance();
+
+    wrapper.setState({ wrongText: '', correctText: '', todoText: 'Text!' });
+    instance.correctInput('T');
+
+    expect(wrapper.state('wrongText')).toEqual('');
+    expect(wrapper.state('correctText')).toEqual('T');
+    expect(wrapper.state('todoText')).toEqual('ext!');
+  });
+});
