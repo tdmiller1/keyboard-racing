@@ -1,0 +1,16 @@
+.typing-prompt-container {
+  padding: 16px;
+  border-radius: 4px;
+
+  .typing-prompt-correct {
+    border-radius: 5px;
+    background-color: #84e184;
+  }
+  .typing-prompt-wrong {
+    border-radius: 5px;
+    background-color: #ff4c1f;
+  }
+  .typing-prompt-todo {
+    color: #14141f;
+  }
+}
