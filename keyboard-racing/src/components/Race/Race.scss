@@ -1,0 +1,11 @@
+.typing-prompt-container {
+  .typing-prompt-correct {
+    color: green;
+  }
+  .typing-prompt-todo {
+    color: black;
+  }
+  .typing-prompt-wrong {
+    color: red;
+  }
+}
