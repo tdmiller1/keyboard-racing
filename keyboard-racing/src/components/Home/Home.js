@@ -1,13 +1,14 @@
 import React from 'react';
+import { BASE_ROUTE } from '../../urls';
 
 class Home extends React.Component {
 
   componentDidMount(){
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('code');
-    if(myParam){
+    if (myParam) {
       localStorage.setItem('code', myParam);
-      window.location.href = '/#/';
+      window.location.href = BASE_ROUTE;
     }
   }
 
