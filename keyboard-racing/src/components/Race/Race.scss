@@ -1,11 +1,16 @@
 .typing-prompt-container {
+  padding: 16px;
+  border-radius: 4px;
+
   .typing-prompt-correct {
-    color: green;
-  }
-  .typing-prompt-todo {
-    color: black;
+    border-radius: 5px;
+    background-color: #84e184;
   }
   .typing-prompt-wrong {
-    color: red;
+    border-radius: 5px;
+    background-color: #ff4c1f;
+  }
+  .typing-prompt-todo {
+    color: #14141f;
   }
 }
