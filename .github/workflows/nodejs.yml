@@ -18,7 +18,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: cd keyboard-racing
-    - run: npm install
-    - run: npm test
+    - run: |
+        cd keyboard-racing
+        npm install
+    - run: |
+        cd keyboard-racing
+        npm test
       env:
         CI: true
