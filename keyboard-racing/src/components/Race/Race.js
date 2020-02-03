@@ -17,17 +17,18 @@ class Race extends React.Component {
         const newString = e.target.value;
         const newestChar = newString.charAt(newString.length - 1);
         const wasBackspacePressed = newString.length <= this.state.inputValue.length;
-        const done = !this.state.todoText.length && !this.state.wrongText.length;
+        const completed = !this.state.todoText.length && !this.state.wrongText.length && this.state.correctText.length;
 
-        if (!done) {
+        if (!completed) {
+            if (this.state.todoText.length)
+                this.setState({ inputValue: newString });
+
             if (wasBackspacePressed)
                 this.backspace()
             else if (newestChar === this.state.todoText.charAt(0) && !this.state.wrongText.length)
                 this.correctInput(newestChar)
             else
                 this.incorrectInput()
-
-            this.setState({ inputValue: newString });
         }
     }
 
@@ -47,15 +48,18 @@ class Race extends React.Component {
         this.setState({
             correctText,
             wrongText,
-            todoText
+            todoText,
+            inputValue: this.state.inputValue.substr(0, this.state.inputValue.length - 1)
         });
     }
 
     correctInput = (newestChar) => {
-        this.setState({
-            correctText: this.state.correctText + newestChar,
-            todoText: this.state.todoText.substr(1, this.state.todoText.length)
-        });
+        if (this.state.todoText.length && !this.state.wrongText.length) {
+            this.setState({
+                correctText: this.state.correctText + newestChar,
+                todoText: this.state.todoText.substr(1, this.state.todoText.length)
+            });
+        }
     }
 
     incorrectInput = () => {
